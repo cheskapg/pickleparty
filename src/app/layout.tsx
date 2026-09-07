@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import {
   Archivo_Black,
   Bungee,
@@ -31,10 +31,61 @@ const spaceMono = Space_Mono({
   variable: "--font-space-mono",
 });
 
+const siteTitle = "DINK OR DRINK — Chestine’s Pickle Party";
+const siteDescription =
+  "Open the invitation: Chestine’s Pickle Party. Dink. Drink. Repeat. Open play, cold drinks, and questionable decisions.";
+
 export const metadata: Metadata = {
-  title: "DINK OR DRINK — Chestine’s Pickle Party",
-  description:
-    "Open the invitation: Chestine’s Pickle Party. Dink. Drink. Repeat. Open play, cold drinks, and questionable decisions.",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://pickleparty.vercel.app",
+  ),
+  title: {
+    default: siteTitle,
+    template: "%s · DINK OR DRINK",
+  },
+  description: siteDescription,
+  applicationName: "DINK OR DRINK",
+  keywords: [
+    "pickleball",
+    "pickle party",
+    "Chestine",
+    "RSVP",
+    "dink or drink",
+    "birthday",
+  ],
+  authors: [{ name: "Chestine’s Pickle Party" }],
+  creator: "Chestine’s Pickle Party",
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.png", type: "image/png", sizes: "32x32" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    title: siteTitle,
+    description: siteDescription,
+    siteName: "DINK OR DRINK",
+  },
+  twitter: {
+    card: "summary",
+    title: siteTitle,
+    description: siteDescription,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ccff00" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b2ca8" },
+  ],
+  colorScheme: "light",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
