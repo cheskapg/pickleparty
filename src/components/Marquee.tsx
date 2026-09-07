@@ -11,14 +11,14 @@ export function Marquee({
 
   return (
     <div
-      className={`overflow-hidden border-y-[3px] border-ink py-2 ${className}`}
+      className={`overflow-hidden border-y-[3px] border-ink py-2.5 ${className}`}
       aria-hidden
     >
       <div className={`marquee-track ${fast ? "marquee-fast" : ""}`}>
         {row.map((item, index) => (
           <span
             key={`${item}-${index}`}
-            className="flex shrink-0 items-center gap-4 px-4 font-display text-sm sm:text-base"
+            className="flex shrink-0 items-center gap-4 px-4 font-display text-base sm:text-lg"
           >
             {item}
             <span className="text-lg">✦</span>

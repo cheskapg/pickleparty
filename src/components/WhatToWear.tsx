@@ -9,8 +9,23 @@ const looks = [
     tab: "COURT CLASSIC",
     title: "The Court Classic",
     heading: "Pickleball Ready",
-    image: "/images/fit-court.png",
-    alt: "Flat lay of a court-ready outfit: tank top, pleated skirt, court shoes, visor",
+    designs: [
+      {
+        name: "Acid Serve",
+        image: "/images/court-night-1.png",
+        alt: "Blue top and acid skirt for an indoor night game",
+      },
+      {
+        name: "Blue Rally",
+        image: "/images/court-night-2.png",
+        alt: "Blue polo and black shorts for an indoor night game",
+      },
+      {
+        name: "Pink Match",
+        image: "/images/court-night-3.png",
+        alt: "Pink top and blue skort for an indoor night game",
+      },
+    ],
     tint: "acid" as const,
     accent: "bg-acid",
     items: [
@@ -25,8 +40,23 @@ const looks = [
     tab: "SPORTY CHIC",
     title: "Sporty Chic",
     heading: "Sporty Chic",
-    image: "/images/fit-sporty.png",
-    alt: "Flat lay of a matching athletic set with sneakers and sunglasses",
+    designs: [
+      {
+        name: "Electric Set",
+        image: "/images/sporty-night-1.png",
+        alt: "Blue matching set under indoor court lights",
+      },
+      {
+        name: "Teen Flick",
+        image: "/images/sporty-night-2.png",
+        alt: "Pink jersey, black skirt and blue jacket",
+      },
+      {
+        name: "After Hours",
+        image: "/images/sporty-night-3.png",
+        alt: "Acid top and cobalt track pants",
+      },
+    ],
     tint: "pink" as const,
     accent: "bg-pink",
     items: [
@@ -41,8 +71,23 @@ const looks = [
     tab: "APRÈS PICKLE",
     title: "Après Pickle",
     heading: "Après Pickle",
-    image: "/images/fit-apres.png",
-    alt: "Flat lay of a casual after-party outfit: linen shirt, sundress, slides",
+    designs: [
+      {
+        name: "Club Blue",
+        image: "/images/apres-night-1.png",
+        alt: "Blue shirt and cream trousers for after the game",
+      },
+      {
+        name: "Hot Pink",
+        image: "/images/apres-night-2.png",
+        alt: "Pink dress and blue bomber jacket",
+      },
+      {
+        name: "Night Polo",
+        image: "/images/apres-night-3.png",
+        alt: "Black polo and cobalt shorts",
+      },
+    ],
     tint: "cyan" as const,
     accent: "bg-cyan",
     items: [
@@ -56,7 +101,9 @@ const looks = [
 
 export function WhatToWear() {
   const [activeId, setActiveId] = useState(looks[1].id);
+  const [activeDesign, setActiveDesign] = useState(0);
   const active = looks.find((look) => look.id === activeId) ?? looks[0];
+  const design = active.designs[activeDesign] ?? active.designs[0];
 
   return (
     <section
@@ -80,7 +127,10 @@ export function WhatToWear() {
             <button
               key={look.id}
               type="button"
-              onClick={() => setActiveId(look.id)}
+              onClick={() => {
+                setActiveId(look.id);
+                setActiveDesign(0);
+              }}
               aria-pressed={look.id === activeId}
               className={`border-[3px] border-bone px-3.5 py-2.5 font-display text-xs transition-transform sm:px-4 sm:text-sm ${
                 look.id === activeId
@@ -98,15 +148,15 @@ export function WhatToWear() {
             <div className="absolute -inset-3 rotate-2 stripes opacity-20" />
             <div className="relative border-[4px] border-bone bg-bone p-2 shadow-[10px_10px_0_var(--blue)] sm:shadow-[14px_14px_0_var(--blue)]">
               <PosterPhoto
-                key={active.id}
-                src={active.image}
-                alt={active.alt}
+                key={`${active.id}-${activeDesign}`}
+                src={design.image}
+                alt={design.alt}
                 tint={active.tint}
                 className="pop-in aspect-[3/4] border-[3px] border-ink"
               />
             </div>
             <p className="relative mt-3 text-center font-mono text-xs tracking-[0.16em] text-bone/70">
-              OUTFIT INSPO · NO MODELS, JUST FITS
+              INDOOR NIGHT FIT · NO MODELS, JUST CLOTHES
             </p>
           </div>
 
@@ -115,8 +165,35 @@ export function WhatToWear() {
               {active.title}
             </p>
             <p className="kicker mt-2 text-bone/70">
-              {active.heading.toUpperCase()}
+              {active.heading.toUpperCase()} · {design.name.toUpperCase()}
             </p>
+            <div className="mt-5 grid grid-cols-3 gap-2.5">
+              {active.designs.map((option, index) => (
+                <button
+                  key={option.name}
+                  type="button"
+                  onClick={() => setActiveDesign(index)}
+                  aria-pressed={activeDesign === index}
+                  className={`border-[3px] p-1.5 text-left transition-transform ${
+                    activeDesign === index
+                      ? "border-acid bg-acid text-ink shadow-[4px_4px_0_var(--blue)]"
+                      : "border-bone/50 bg-bone/10 text-bone hover:border-bone"
+                  }`}
+                >
+                  <span className="relative block aspect-[3/4] overflow-hidden border-2 border-ink">
+                    <PosterPhoto
+                      src={option.image}
+                      alt=""
+                      tint={active.tint}
+                      className="size-full"
+                    />
+                  </span>
+                  <span className="mt-1.5 block text-center text-xs font-bold leading-tight">
+                    {option.name}
+                  </span>
+                </button>
+              ))}
+            </div>
             <ul className="mt-6 space-y-3">
               {active.items.map((item) => (
                 <li

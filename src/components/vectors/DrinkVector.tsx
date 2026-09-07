@@ -6,90 +6,92 @@ export function DrinkVector({ className = "" }: { className?: string }) {
       aria-hidden
       focusable="false"
     >
-      <g stroke="var(--ink)" strokeWidth={5} strokeLinejoin="round">
-        {/* coupe glass in the back */}
-        <g className="vec-tilt">
-          <path
-            d="M28 86h64l-24 34v42"
-            fill="var(--pink)"
-            strokeLinecap="round"
-          />
-          <path d="M44 172h32" fill="none" strokeLinecap="round" />
-          <circle cx={44} cy={78} r={9} fill="var(--acid)" />
-        </g>
+      <defs>
+        <clipPath id="drink-glass-clip">
+          <path d="M67 68h106l-12 130a13 13 0 0 1-13 12H92a13 13 0 0 1-13-12Z" />
+        </clipPath>
+      </defs>
 
-        {/* highball glass */}
-        <g className="vec-tilt vec-delay-2">
+      <g stroke="var(--ink)" strokeWidth={5} strokeLinejoin="round">
+        {/* striped straw, clearly behind the glass */}
+        <path
+          d="M174 28 143 100"
+          fill="none"
+          stroke="var(--pink)"
+          strokeWidth={13}
+          strokeLinecap="round"
+        />
+        <path
+          d="M174 28 143 100"
+          fill="none"
+          stroke="var(--bone)"
+          strokeWidth={5}
+          strokeLinecap="round"
+          strokeDasharray="11 12"
+        />
+
+        <g className="vec-tilt">
+          {/* transparent glass body */}
           <path
-            d="M104 62h68l-8 138a10 10 0 0 1-10 9h-32a10 10 0 0 1-10-9Z"
+            d="M67 68h106l-12 130a13 13 0 0 1-13 12H92a13 13 0 0 1-13-12Z"
             fill="var(--blue-soft)"
-            fillOpacity={0.55}
+            fillOpacity={0.45}
           />
-          {/* liquid */}
-          <path
-            className="vec-liquid"
-            d="M110 104c10-6 18 4 28 0s18-8 28-2l-5 98a10 10 0 0 1-10 9h-27a10 10 0 0 1-10-9Z"
-            fill="var(--blue)"
-          />
-          {/* bubbles */}
-          <g fill="var(--acid)" strokeWidth={3}>
-            <circle className="vec-bubble" cx={124} cy={190} r={6} />
-            <circle
-              className="vec-bubble vec-delay-1"
-              cx={142}
-              cy={196}
-              r={4.5}
+
+          {/* animated liquid stays clipped inside the glass */}
+          <g clipPath="url(#drink-glass-clip)">
+            <path
+              className="vec-liquid"
+              d="M69 111c16-9 29 7 48 0 18-7 34-8 53 1l-9 96H79Z"
+              fill="var(--blue)"
+              stroke="none"
             />
-            <circle
-              className="vec-bubble vec-delay-2"
-              cx={156}
-              cy={188}
-              r={5.5}
+            <path
+              d="M75 124c25 9 55-10 88 1"
+              fill="none"
+              stroke="var(--cyan)"
+              strokeWidth={6}
+              strokeLinecap="round"
             />
-            <circle
-              className="vec-bubble vec-delay-3"
-              cx={134}
-              cy={200}
-              r={4}
-            />
+            <g fill="var(--acid)" strokeWidth={3}>
+              <circle className="vec-bubble" cx={96} cy={188} r={6} />
+              <circle className="vec-bubble vec-delay-1" cx={121} cy={198} r={5} />
+              <circle className="vec-bubble vec-delay-2" cx={147} cy={187} r={7} />
+              <circle className="vec-bubble vec-delay-3" cx={132} cy={202} r={4} />
+            </g>
           </g>
-          {/* straw */}
+
+          {/* rim and glass shine */}
+          <path d="M65 68h110" fill="none" strokeLinecap="round" />
           <path
-            d="M186 34 158 96"
+            d="M91 86 96 174"
             fill="none"
-            stroke="var(--pink)"
-            strokeWidth={11}
+            stroke="var(--bone)"
+            strokeWidth={6}
             strokeLinecap="round"
+            opacity={0.8}
           />
+
+          {/* lemon wheel */}
+          <circle cx={166} cy={76} r={24} fill="var(--acid)" />
+          <path d="m166 76 17-16M166 76l20 10M166 76l-5 23" fill="none" strokeWidth={3} />
+
+          {/* pickle garnish */}
           <path
-            d="M186 34 158 96"
-            fill="none"
-            stroke="var(--ink)"
-            strokeWidth={4}
-            strokeLinecap="round"
-            strokeDasharray="10 12"
-          />
-          {/* pickle spear garnish */}
-          <path
-            d="M118 30c10 4 12 22 6 42-4 12-12 16-18 12s-6-16 0-32c5-14 6-24 12-22Z"
-            fill="var(--acid)"
-          />
-          {/* lime wedge on the rim */}
-          <path
-            d="M172 62a26 26 0 0 0 26-26 26 26 0 0 0-26 26Z"
+            d="M78 42c16 2 22 21 13 39-6 12-17 14-25 7-8-8-5-20 2-31 4-7 5-14 10-15Z"
             fill="var(--acid-deep)"
           />
+          <path d="m73 57 10 17M84 54l-12 20" fill="none" strokeWidth={3} />
         </g>
 
-        {/* sparkles */}
         <g fill="var(--acid)" strokeWidth={3}>
           <path
             className="vec-sparkle"
-            d="M40 40l5 12 12 5-12 5-5 12-5-12-12-5 12-5Z"
+            d="M40 56l5 12 12 5-12 5-5 12-5-12-12-5 12-5Z"
           />
           <path
             className="vec-sparkle vec-delay-2"
-            d="M208 150l4 10 10 4-10 4-4 10-4-10-10-4 10-4Z"
+            d="M204 140l4 10 10 4-10 4-4 10-4-10-10-4 10-4Z"
           />
         </g>
       </g>

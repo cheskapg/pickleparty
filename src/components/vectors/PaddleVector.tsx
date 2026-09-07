@@ -1,31 +1,26 @@
-function Paddle({
-  face,
-  grip,
-}: {
-  face: string;
-  grip: string;
-}) {
+function Paddle({ face, grip }: { face: string; grip: string }) {
   return (
     <g stroke="var(--ink)" strokeWidth={5} strokeLinejoin="round">
-      <rect x={-34} y={-98} width={68} height={108} rx={30} fill={face} />
-      <rect x={-12} y={4} width={24} height={78} rx={9} fill={grip} />
+      <rect x={-32} y={-96} width={64} height={104} rx={30} fill={face} />
+      <rect x={-11} y={2} width={22} height={82} rx={9} fill={grip} />
       <g
         fill="none"
-        stroke="var(--ink)"
+        stroke="var(--bone)"
         strokeWidth={3.5}
         strokeLinecap="round"
+        opacity={0.8}
       >
-        <path d="M-10 22h20" />
-        <path d="M-10 40h20" />
-        <path d="M-10 58h20" />
+        <path d="M-9 24h18" />
+        <path d="M-9 44h18" />
+        <path d="M-9 64h18" />
       </g>
-      <g fill="var(--ink)" stroke="none" opacity={0.5}>
-        <circle cx={-14} cy={-66} r={3} />
-        <circle cx={2} cy={-74} r={3} />
-        <circle cx={16} cy={-62} r={3} />
-        <circle cx={-6} cy={-50} r={3} />
-        <circle cx={12} cy={-40} r={3} />
-        <circle cx={-18} cy={-32} r={3} />
+      <g fill="var(--ink)" stroke="none" opacity={0.4}>
+        <circle cx={-13} cy={-64} r={3} />
+        <circle cx={3} cy={-72} r={3} />
+        <circle cx={15} cy={-58} r={3} />
+        <circle cx={-5} cy={-48} r={3} />
+        <circle cx={11} cy={-36} r={3} />
+        <circle cx={-17} cy={-30} r={3} />
       </g>
     </g>
   );
@@ -39,40 +34,48 @@ export function PaddleVector({ className = "" }: { className?: string }) {
       aria-hidden
       focusable="false"
     >
-      {/* impact burst behind the crossed paddles */}
-      <g className="vec-burst">
-        <path
-          d="M120 18l14 40 34-26-18 40 44-4-38 22 38 22-44-4 18 40-34-26-14 40-14-40-34 26 18-40-44 4 38-22-38-22 44 4-18-40 34 26Z"
-          fill="var(--acid)"
-          stroke="var(--ink)"
-          strokeWidth={4}
-        />
-      </g>
-
-      {/* crossed paddles */}
-      <g transform="translate(120 124)">
-        <g className="vec-paddle-left" transform="rotate(-38)">
-          <Paddle face="var(--blue)" grip="var(--ink)" />
-        </g>
-        <g className="vec-paddle-right" transform="rotate(38)">
-          <Paddle face="var(--bone)" grip="var(--ink)" />
+      {/* starburst behind the crest */}
+      <g transform="translate(120 104) scale(0.62)">
+        <g className="vec-burst">
+          <path
+            d="M0-96 11-56l28-25-14 36 37-7-30 21 30 21-37-7 14 36-28-25L0 96l-11-56-28 25 14-36-37 7 30-21-30-21 37 7-14-36 28 25Z"
+            fill="var(--acid)"
+            stroke="var(--ink)"
+            strokeWidth={6}
+          />
         </g>
       </g>
 
-      {/* ball arcing across the crest */}
-      <g className="vec-ball" transform="translate(120 58)">
-        <circle
-          r={17}
-          fill="var(--acid)"
-          stroke="var(--ink)"
-          strokeWidth={5}
-        />
-        <g fill="var(--ink)" opacity={0.65}>
-          <circle cx={-6} cy={-5} r={2.6} />
-          <circle cx={6} cy={-4} r={2.6} />
-          <circle cx={0} cy={4} r={2.6} />
-          <circle cx={-8} cy={5} r={2.2} />
-          <circle cx={8} cy={6} r={2.2} />
+      {/* crossed paddles: static rotation outside, swing animation inside */}
+      <g transform="translate(120 108)">
+        <g transform="rotate(-55)">
+          <g className="vec-paddle-left">
+            <Paddle face="var(--blue)" grip="var(--ink)" />
+          </g>
+        </g>
+        <g transform="rotate(55)">
+          <g className="vec-paddle-right">
+            <Paddle face="var(--pink)" grip="var(--ink)" />
+          </g>
+        </g>
+      </g>
+
+      {/* ball arcing over the crest */}
+      <g transform="translate(120 40)">
+        <g className="vec-ball">
+          <circle
+            r={17}
+            fill="var(--bone)"
+            stroke="var(--ink)"
+            strokeWidth={5}
+          />
+          <g fill="var(--ink)" opacity={0.6}>
+            <circle cx={-6} cy={-5} r={2.6} />
+            <circle cx={6} cy={-4} r={2.6} />
+            <circle cx={0} cy={4} r={2.6} />
+            <circle cx={-8} cy={5} r={2.2} />
+            <circle cx={8} cy={6} r={2.2} />
+          </g>
         </g>
       </g>
     </svg>

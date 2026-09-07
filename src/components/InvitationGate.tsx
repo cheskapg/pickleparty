@@ -33,19 +33,18 @@ export function InvitationGate({ children }: { children: ReactNode }) {
         >
           <div
             className="absolute inset-0 halftone opacity-50"
-            style={{ ["--dot" as string]: "rgba(108,43,255,0.5)" }}
+            style={{ ["--dot" as string]: "rgba(27,82,255,0.5)" }}
           />
           <div className="absolute inset-0 court-grid opacity-30" />
-          <div className="absolute -left-24 top-1/4 h-40 w-[140%] rotate-[-8deg] bg-pink/90 mix-blend-multiply" />
+          <div className="absolute -left-24 top-1/4 h-32 w-[140%] rotate-[-8deg] border-y-[3px] border-ink bg-pink sm:h-40" />
+          <div className="absolute -right-24 bottom-[22%] h-16 w-[130%] rotate-[6deg] border-y-[3px] border-ink bg-blue sm:h-24" />
 
           <div className="relative flex h-full flex-col items-center justify-center px-5 text-center">
-            <p className="font-display text-xs tracking-[0.4em] text-ink sm:text-sm">
-              YOU’RE ON THE LIST
-            </p>
+            <p className="kicker text-ink">YOU’RE ON THE LIST</p>
 
-            <h1 className="smash mt-5 text-[17vw] leading-[0.78] text-ink sm:text-[11vw] lg:text-[8.5rem]">
+            <h1 className="smash mt-5 text-[17vw] leading-[0.8] text-ink sm:text-[11vw] lg:text-[8.5rem]">
               <span className="block warp glitch">DINK</span>
-              <span className="block text-pink-deep outline-type">OR</span>
+              <span className="block text-blue-deep outline-type">OR</span>
               <span className="block warp-right glitch">DRINK</span>
             </h1>
 
@@ -53,26 +52,32 @@ export function InvitationGate({ children }: { children: ReactNode }) {
               <p className="font-display text-sm text-ink sm:text-base">
                 CHESTINE’S PICKLE PARTY
               </p>
-              <p className="mt-1 text-[11px] tracking-[0.2em] text-ink/70">
+              <p className="mt-1.5 font-mono text-sm tracking-[0.16em] text-ink/75">
                 DRINK · EAT · PLAY
               </p>
             </div>
 
             <button
               type="button"
-              onClick={() => setPhase("opening")}
-              className="group mt-10 flex items-center gap-4 border-[3px] border-ink bg-ink px-8 py-5 font-display text-lg text-acid shadow-[8px_8px_0_var(--pink)] transition-transform hover:-translate-y-1 active:translate-y-0 active:shadow-[4px_4px_0_var(--pink)] sm:text-2xl"
+              onClick={() => {
+                window.dispatchEvent(new Event("invitation-opened"));
+                setPhase("opening");
+              }}
+              className="group mt-10 flex w-full max-w-sm items-center justify-center gap-3 border-[3px] border-ink bg-ink px-6 py-5 font-display text-lg text-acid shadow-[8px_8px_0_var(--pink)] transition-transform hover:-translate-y-1 active:translate-y-0 active:shadow-[4px_4px_0_var(--pink)] sm:gap-4 sm:px-8 sm:text-2xl"
             >
               <span className="ball-bounce text-2xl" aria-hidden>
                 🥒
               </span>
               OPEN THE INVITE
-              <span className="transition-transform group-hover:translate-x-1" aria-hidden>
+              <span
+                className="transition-transform group-hover:translate-x-1"
+                aria-hidden
+              >
                 →
               </span>
             </button>
 
-            <p className="mt-6 flicker text-[11px] tracking-[0.3em] text-ink/70">
+            <p className="mt-6 flicker font-mono text-sm tracking-[0.22em] text-ink/75">
               TAP TO REVEAL
             </p>
           </div>

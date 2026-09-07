@@ -30,9 +30,30 @@ export function Hero() {
           </div>
 
           <p className="body-copy mt-6 max-w-md text-bone">
-            A loud little celebration on the court. Paddles up, drinks cold,
-            playlist unhinged.
+            An indoor night match with bright fits, cold drinks, and a playlist
+            loud enough for the back court.
           </p>
+
+          <div className="mt-7 grid max-w-xl grid-cols-2 gap-3">
+            {[
+              ["DATE", "ADD DATE"],
+              ["TIME", "ADD TIME"],
+              ["VENUE", "ADD INDOOR COURT"],
+              ["DETAILS", "ADD ADDRESS / NOTES"],
+            ].map(([label, value], index) => (
+              <div
+                key={label}
+                className={`border-[3px] border-ink p-3 shadow-[4px_4px_0_var(--ink)] ${
+                  index === 3 ? "bg-cyan" : "bg-bone"
+                }`}
+              >
+                <p className="kicker text-blue-deep">{label}</p>
+                <p className="mt-1.5 text-sm font-bold leading-snug text-ink sm:text-base">
+                  {value}
+                </p>
+              </div>
+            ))}
+          </div>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a

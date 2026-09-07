@@ -76,29 +76,29 @@ export function RsvpExperience() {
     <>
       <section
         id="dink-or-drink"
-        className="relative overflow-hidden bg-violet px-5 py-20"
+        className="relative overflow-hidden bg-blue px-4 py-16 sm:px-5 sm:py-20"
       >
         <div
           className="absolute inset-0 halftone opacity-35"
-          style={{ ["--dot" as string]: "rgba(23,233,255,0.6)" }}
+          style={{ ["--dot" as string]: "rgba(204,255,0,0.55)" }}
         />
 
         <div className="relative mx-auto max-w-5xl">
-          <p className="font-display text-[11px] tracking-[0.32em] text-acid">
-            THE BIG QUESTION
-          </p>
-          <h2 className="smash mt-3 text-5xl text-bone sm:text-7xl">
+          <p className="kicker text-acid">THE BIG QUESTION</p>
+          <h2 className="smash mt-3 text-4xl text-bone sm:text-6xl md:text-7xl">
             <span className="block warp glitch">SO... ARE YOU</span>
             <span className="block text-acid">HERE TO DINK</span>
-            <span className="block warp-right outline-type-light">OR DRINK?</span>
+            <span className="block warp-right outline-type-light">
+              OR DRINK?
+            </span>
           </h2>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
+          <div className="mt-10 grid gap-5 sm:mt-12 sm:gap-6 md:grid-cols-2">
             <button
               type="button"
               onClick={() => selectPlan("dink")}
               aria-pressed={choice === "dink"}
-              className={`border-[4px] border-ink p-7 text-left transition-transform ${
+              className={`border-[4px] border-ink p-6 text-left transition-transform sm:p-7 ${
                 choice === "dink"
                   ? "-translate-y-1 bg-acid shadow-[10px_10px_0_var(--ink)]"
                   : "bg-bone shadow-[6px_6px_0_var(--ink)] hover:-translate-y-1"
@@ -107,10 +107,10 @@ export function RsvpExperience() {
               <p className="font-display text-4xl text-ink sm:text-5xl">
                 🥒 DINK
               </p>
-              <p className="mt-3 font-display text-base text-pink-deep">
+              <p className="mt-3 font-display text-base text-blue-deep sm:text-lg">
                 I’M HERE TO PLAY
               </p>
-              <p className="mt-3 text-xs text-ink/75 sm:text-sm">
+              <p className="body-copy mt-3 text-ink/85">
                 Open play • Friendly matches • Pickleball • Competition
               </p>
             </button>
@@ -119,7 +119,7 @@ export function RsvpExperience() {
               type="button"
               onClick={() => selectPlan("drink")}
               aria-pressed={choice === "drink"}
-              className={`border-[4px] border-ink p-7 text-left transition-transform ${
+              className={`border-[4px] border-ink p-6 text-left transition-transform sm:p-7 ${
                 choice === "drink"
                   ? "-translate-y-1 bg-pink shadow-[10px_10px_0_var(--ink)]"
                   : "bg-bone shadow-[6px_6px_0_var(--ink)] hover:-translate-y-1"
@@ -133,15 +133,15 @@ export function RsvpExperience() {
                 🍸 DRINK
               </p>
               <p
-                className={`mt-3 font-display text-base ${
+                className={`mt-3 font-display text-base sm:text-lg ${
                   choice === "drink" ? "text-ink" : "text-pink-deep"
                 }`}
               >
                 I’M HERE TO PARTY
               </p>
               <p
-                className={`mt-3 text-xs sm:text-sm ${
-                  choice === "drink" ? "text-bone/90" : "text-ink/75"
+                className={`body-copy mt-3 ${
+                  choice === "drink" ? "text-bone" : "text-ink/85"
                 }`}
               >
                 Drinks • Food • Socializing • Good vibes
@@ -153,7 +153,7 @@ export function RsvpExperience() {
             type="button"
             onClick={() => selectPlan("both")}
             aria-pressed={choice === "both"}
-            className={`mt-6 w-full border-[4px] border-ink p-6 transition-transform ${
+            className={`mt-5 w-full border-[4px] border-ink p-6 transition-transform sm:mt-6 ${
               choice === "both"
                 ? "-translate-y-1 bg-cyan shadow-[10px_10px_0_var(--ink)]"
                 : "bg-ink shadow-[6px_6px_0_var(--acid)] hover:-translate-y-1"
@@ -167,8 +167,8 @@ export function RsvpExperience() {
               🥒 DINK + 🍸 DRINK
             </p>
             <p
-              className={`mt-2 text-xs sm:text-sm ${
-                choice === "both" ? "text-ink/80" : "text-bone/70"
+              className={`body-copy mt-2 ${
+                choice === "both" ? "text-ink/85" : "text-bone/85"
               }`}
             >
               Obviously, the correct answer.
@@ -177,28 +177,29 @@ export function RsvpExperience() {
         </div>
       </section>
 
-      <section id="rsvp" className="relative overflow-hidden bg-bone px-5 py-20">
+      <section
+        id="rsvp"
+        className="relative overflow-hidden bg-bone px-4 py-16 sm:px-5 sm:py-20"
+      >
         <div className="absolute inset-0 court-grid opacity-20" />
 
         <div className="relative mx-auto max-w-2xl">
-          <p className="font-display text-[11px] tracking-[0.32em] text-pink-deep">
-            RSVP
-          </p>
-          <h2 className="smash mt-3 text-6xl text-ink sm:text-7xl">
+          <p className="kicker text-blue-deep">RSVP</p>
+          <h2 className="smash mt-3 text-5xl text-ink sm:text-6xl md:text-7xl">
             <span className="block warp">SAVE YOUR SPOT</span>
           </h2>
-          <p className="mt-4 text-xs tracking-[0.16em] text-ink/70 sm:text-sm">
+          <p className="body-copy mt-4 text-ink/80">
             {choice
-              ? choiceCopy.toUpperCase()
-              : "PICK DINK, DRINK, OR BOTH ABOVE — THEN LOCK IT IN."}
+              ? choiceCopy
+              : "Pick Dink, Drink, or both above — then lock it in."}
           </p>
 
           {status === "done" ? (
-            <div className="pop-in mt-10 border-[4px] border-ink bg-acid p-8 text-center shadow-[12px_12px_0_var(--pink)]">
+            <div className="pop-in mt-10 border-[4px] border-ink bg-acid p-6 text-center shadow-[10px_10px_0_var(--blue)] sm:p-8 sm:shadow-[12px_12px_0_var(--blue)]">
               <p className="font-display text-3xl text-ink sm:text-4xl">
                 YOU’RE IN! 🥒🍸
               </p>
-              <p className="mt-4 text-sm text-ink/80">
+              <p className="body-copy mt-4 text-ink/85">
                 Your spot is saved.
                 <br />
                 Now start working on your dink.
@@ -207,38 +208,34 @@ export function RsvpExperience() {
           ) : (
             <form
               onSubmit={onSubmit}
-              className="mt-10 border-[4px] border-ink bg-bone p-6 shadow-[12px_12px_0_var(--ink)] sm:p-8"
+              className="mt-10 border-[4px] border-ink bg-bone p-5 shadow-[8px_8px_0_var(--ink)] sm:p-8 sm:shadow-[12px_12px_0_var(--ink)]"
             >
               <div className="space-y-7">
                 <label className="block">
-                  <span className="font-display text-[11px] tracking-[0.14em] text-ink">
-                    NAME
-                  </span>
+                  <span className="kicker text-ink">NAME</span>
                   <input
                     required
                     value={name}
                     onChange={(event) => setName(event.target.value)}
-                    className="mt-2 w-full border-[3px] border-ink bg-white px-3 py-3 text-sm outline-none focus:bg-acid/30"
+                    className="mt-2 w-full border-[3px] border-ink bg-white px-3 py-3 outline-none focus:bg-acid/30"
                   />
                 </label>
 
                 <label className="block">
-                  <span className="font-display text-[11px] tracking-[0.14em] text-ink">
-                    EMAIL / PHONE
-                  </span>
+                  <span className="kicker text-ink">EMAIL / PHONE</span>
                   <input
                     required
                     value={contact}
                     onChange={(event) => setContact(event.target.value)}
-                    className="mt-2 w-full border-[3px] border-ink bg-white px-3 py-3 text-sm outline-none focus:bg-acid/30"
+                    className="mt-2 w-full border-[3px] border-ink bg-white px-3 py-3 outline-none focus:bg-acid/30"
                   />
                 </label>
 
                 <fieldset>
-                  <legend className="font-display text-[11px] tracking-[0.14em] text-ink">
+                  <legend className="kicker text-ink">
                     ARE YOU JOINING US?
                   </legend>
-                  <div className="mt-3 flex flex-wrap gap-3">
+                  <div className="mt-3 flex flex-wrap gap-2.5">
                     <Choice
                       checked={attending === "yes"}
                       onChange={() => setAttending("yes")}
@@ -253,10 +250,10 @@ export function RsvpExperience() {
                 </fieldset>
 
                 <fieldset>
-                  <legend className="font-display text-[11px] tracking-[0.14em] text-ink">
+                  <legend className="kicker text-ink">
                     WHAT’S YOUR GAME PLAN?
                   </legend>
-                  <div className="mt-3 flex flex-wrap gap-3">
+                  <div className="mt-3 flex flex-wrap gap-2.5">
                     <Choice
                       checked={gamePlan === "dink"}
                       onChange={() => setGamePlan("dink")}
@@ -276,10 +273,10 @@ export function RsvpExperience() {
                 </fieldset>
 
                 <fieldset>
-                  <legend className="font-display text-[11px] tracking-[0.14em] text-ink">
+                  <legend className="kicker text-ink">
                     IF YOU’RE PLAYING, WHAT’S YOUR LEVEL?
                   </legend>
-                  <div className="mt-3 flex flex-wrap gap-3">
+                  <div className="mt-3 flex flex-wrap gap-2.5">
                     {skillOptions.map((option) => (
                       <Choice
                         key={option.value}
@@ -292,10 +289,8 @@ export function RsvpExperience() {
                 </fieldset>
 
                 <fieldset>
-                  <legend className="font-display text-[11px] tracking-[0.14em] text-ink">
-                    BRINGING A GUEST?
-                  </legend>
-                  <div className="mt-3 flex flex-wrap gap-3">
+                  <legend className="kicker text-ink">BRINGING A GUEST?</legend>
+                  <div className="mt-3 flex flex-wrap gap-2.5">
                     <Choice
                       checked={!bringingGuest}
                       onChange={() => {
@@ -316,25 +311,25 @@ export function RsvpExperience() {
                       placeholder="Guest Name"
                       value={guestName}
                       onChange={(event) => setGuestName(event.target.value)}
-                      className="mt-4 w-full border-[3px] border-ink bg-white px-3 py-3 text-sm outline-none focus:bg-acid/30"
+                      className="mt-4 w-full border-[3px] border-ink bg-white px-3 py-3 outline-none focus:bg-acid/30"
                     />
                   ) : null}
                 </fieldset>
 
                 <label className="block">
-                  <span className="font-display text-[11px] tracking-[0.14em] text-ink">
+                  <span className="kicker text-ink">
                     ANYTHING WE SHOULD KNOW?
                   </span>
                   <textarea
                     value={notes}
                     onChange={(event) => setNotes(event.target.value)}
                     rows={3}
-                    className="mt-2 w-full resize-none border-[3px] border-ink bg-white px-3 py-3 text-sm outline-none focus:bg-acid/30"
+                    className="mt-2 w-full resize-none border-[3px] border-ink bg-white px-3 py-3 outline-none focus:bg-acid/30"
                   />
                 </label>
 
                 {error ? (
-                  <p className="border-[3px] border-ink bg-pink px-3 py-2 text-xs text-bone">
+                  <p className="border-[3px] border-ink bg-pink px-3 py-2.5 text-sm text-bone">
                     {error}
                   </p>
                 ) : null}
@@ -342,7 +337,7 @@ export function RsvpExperience() {
                 <button
                   type="submit"
                   disabled={status === "saving"}
-                  className="w-full border-[3px] border-ink bg-ink py-4 font-display text-lg text-acid shadow-[6px_6px_0_var(--pink)] transition-transform hover:-translate-y-1 disabled:opacity-60 disabled:hover:translate-y-0"
+                  className="w-full border-[3px] border-ink bg-blue py-4 font-display text-lg text-acid shadow-[6px_6px_0_var(--ink)] transition-transform hover:-translate-y-1 disabled:opacity-60 disabled:hover:translate-y-0"
                 >
                   {status === "saving" ? "SAVING…" : "COUNT ME IN"}
                 </button>
@@ -366,10 +361,10 @@ function Choice({
 }) {
   return (
     <label
-      className={`cursor-pointer border-[3px] border-ink px-3 py-2 text-xs transition-transform sm:text-sm ${
+      className={`cursor-pointer border-[3px] border-ink px-3.5 py-2.5 text-base transition-transform ${
         checked
           ? "-translate-y-0.5 bg-acid font-bold text-ink shadow-[3px_3px_0_var(--ink)]"
-          : "bg-white text-ink/70 hover:bg-acid/20"
+          : "bg-white text-ink/75 hover:bg-acid/20"
       }`}
     >
       <input

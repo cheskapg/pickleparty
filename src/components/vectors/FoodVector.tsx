@@ -87,11 +87,22 @@ export function FoodVector({ className = "" }: { className?: string }) {
             strokeWidth={7}
             strokeLinecap="round"
           />
-          <g fill="var(--acid-deep)">
+          <g fill="var(--pink-deep)">
             <rect x={186} y={158} width={26} height={22} rx={7} />
             <rect x={176} y={182} width={26} height={22} rx={7} />
             <rect x={148} y={162} width={26} height={22} rx={7} />
             <rect x={140} y={188} width={26} height={22} rx={7} />
+          </g>
+          <g
+            fill="none"
+            stroke="var(--acid)"
+            strokeWidth={3}
+            strokeLinecap="round"
+          >
+            <path d="M190 168h18" />
+            <path d="M180 192h18" />
+            <path d="M152 172h18" />
+            <path d="M144 198h18" />
           </g>
         </g>
 
