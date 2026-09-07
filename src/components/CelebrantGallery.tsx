@@ -1,42 +1,41 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CouplePhoto } from "./CouplePhoto";
 
-/**
- * Each slide points at a real file in `public/images/`. To use your own photo,
- * either overwrite the file keeping its name, or rename your photo to match.
- */
-const slides = [
-  {
-    src: "/images/celebrant-01.jpeg",
-    label: "CELEBRANTS — HERO SHOT",
-    note: "celebrant-01.png",
-  },
-  {
-    src: "/images/celebrant-02.png",
-    label: "ON-COURT MOMENT",
-    note: "celebrant-02.png",
-  },
-  {
-    src: "/images/celebrant-03.png",
-    label: "THROWBACK FRAME",
-    note: "celebrant-03.png",
-  },
-  {
-    src: "/images/celebrant-04.png",
-    label: "PARTY PORTRAIT",
-    note: "celebrant-04.png",
-  },
-  {
-    src: "/images/celebrant-05.png",
-    label: "CANDID ENERGY",
-    note: "celebrant-05.png",
-  },
-];
+/** Seconds each photo stays up before sliding to the next one. */
+const SLIDE_SECONDS = 4;
 
-export function CelebrantGallery() {
+export type GallerySlide = {
+  src?: string;
+  label: string;
+  note: string;
+};
+
+export function CelebrantGallery({ slides }: { slides: GallerySlide[] }) {
   const [active, setActive] = useState(0);
+  const [auto, setAuto] = useState(true);
+  const [hovered, setHovered] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  useEffect(() => {
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduceMotion(query.matches);
+    const onChange = () => setReduceMotion(query.matches);
+    query.addEventListener("change", onChange);
+    return () => query.removeEventListener("change", onChange);
+  }, []);
+
+  const running = auto && !hovered && !reduceMotion && slides.length > 1;
+
+  // Keyed on `active`, so manual navigation restarts the countdown.
+  useEffect(() => {
+    if (!running) return;
+    const timer = window.setTimeout(() => {
+      setActive((current) => (current + 1) % slides.length);
+    }, SLIDE_SECONDS * 1000);
+    return () => window.clearTimeout(timer);
+  }, [active, running, slides.length]);
 
   function move(direction: -1 | 1) {
     setActive(
@@ -44,8 +43,16 @@ export function CelebrantGallery() {
     );
   }
 
+  const slide = slides[active];
+
   return (
-    <section className="relative overflow-hidden bg-cyan px-4 py-16 sm:px-5 sm:py-20">
+    <section
+      className="relative overflow-hidden bg-cyan px-4 py-16 sm:px-5 sm:py-20"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocusCapture={() => setHovered(true)}
+      onBlurCapture={() => setHovered(false)}
+    >
       <div className="absolute inset-0 court-grid opacity-25" />
       <div className="relative mx-auto max-w-6xl">
         <div className="flex items-end justify-between gap-4">
@@ -60,7 +67,7 @@ export function CelebrantGallery() {
           </p>
         </div>
 
-        <div className="mt-10 grid items-center gap-5 sm:grid-cols-[auto_1fr_auto]">
+        <div className="mt-10 grid items-center justify-center gap-5 sm:grid-cols-[auto_minmax(0,620px)_auto]">
           <button
             type="button"
             onClick={() => move(-1)}
@@ -72,17 +79,30 @@ export function CelebrantGallery() {
 
           <div className="order-1 border-[4px] border-ink bg-bone p-3 shadow-[10px_10px_0_var(--pink)] sm:order-2 sm:p-4">
             <CouplePhoto
-              key={slides[active].src}
-              src={slides[active].src}
-              label={slides[active].label}
+              key={slide.src ?? slide.label}
+              src={slide.src}
+              label={slide.label}
+              hint={slide.src ? undefined : `Add ${slide.note}`}
               className="pop-in aspect-[4/3] border-[3px] border-ink"
             />
-            <div className="mt-4 flex flex-wrap items-center justify-between gap-2">
-              <p className="font-display text-sm text-ink">
-                {slides[active].label}
-              </p>
+
+            {/* countdown to the next slide */}
+            <div className="mt-3 h-1.5 border-2 border-ink bg-bone">
+              <span
+                key={`${active}-${running}`}
+                className={`block h-full bg-pink ${running ? "slide-timer" : ""}`}
+                style={
+                  running
+                    ? { animationDuration: `${SLIDE_SECONDS}s` }
+                    : { width: "100%", opacity: 0.25 }
+                }
+              />
+            </div>
+
+            <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
+              <p className="font-display text-sm text-ink">{slide.label}</p>
               <p className="font-mono text-xs text-ink/65">
-                {slides[active].note} · {active + 1}/{slides.length}
+                {slide.note} · {active + 1}/{slides.length}
               </p>
             </div>
           </div>
@@ -97,19 +117,29 @@ export function CelebrantGallery() {
           </button>
         </div>
 
-        <div className="mt-7 flex justify-center gap-2">
-          {slides.map((slide, index) => (
-            <button
-              key={slide.src}
-              type="button"
-              onClick={() => setActive(index)}
-              aria-label={`Show photo ${index + 1}`}
-              aria-pressed={active === index}
-              className={`h-3 border-2 border-ink transition-[width,background-color] ${
-                active === index ? "w-10 bg-pink" : "w-3 bg-bone"
-              }`}
-            />
-          ))}
+        <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+          <div className="flex gap-2">
+            {slides.map((item, index) => (
+              <button
+                key={item.note}
+                type="button"
+                onClick={() => setActive(index)}
+                aria-label={`Show photo ${index + 1}`}
+                aria-pressed={active === index}
+                className={`h-3 border-2 border-ink transition-[width,background-color] ${
+                  active === index ? "w-10 bg-pink" : "w-3 bg-bone"
+                }`}
+              />
+            ))}
+          </div>
+          <button
+            type="button"
+            onClick={() => setAuto((current) => !current)}
+            aria-pressed={auto}
+            className="border-2 border-ink bg-bone px-3 py-1.5 font-mono text-xs font-bold text-ink"
+          >
+            {auto ? `❚❚ AUTO ${SLIDE_SECONDS}s` : "▶ AUTO OFF"}
+          </button>
         </div>
       </div>
     </section>

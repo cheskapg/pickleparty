@@ -1,10 +1,6 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
-import path from "node:path";
 import { NextResponse } from "next/server";
+import { saveRsvp } from "@/lib/rsvpStore";
 import type { GamePlan, RsvpPayload, SkillLevel } from "@/lib/types";
-
-const dataDir = path.join(process.cwd(), "data");
-const dataFile = path.join(dataDir, "rsvps.json");
 
 const gamePlans: GamePlan[] = ["dink", "drink", "both"];
 const skillLevels: Array<SkillLevel | ""> = [
@@ -64,17 +60,13 @@ export async function POST(request: Request) {
     createdAt: new Date().toISOString(),
   };
 
-  await mkdir(dataDir, { recursive: true });
-  let existing: unknown[] = [];
-  try {
-    const raw = await readFile(dataFile, "utf8");
-    existing = JSON.parse(raw) as unknown[];
-    if (!Array.isArray(existing)) existing = [];
-  } catch {
-    existing = [];
+  const saved = await saveRsvp(entry);
+  if (!saved) {
+    return NextResponse.json(
+      { error: "We couldn’t save your RSVP. Please try again or text us." },
+      { status: 502 },
+    );
   }
-  existing.push(entry);
-  await writeFile(dataFile, JSON.stringify(existing, null, 2));
 
   return NextResponse.json({ ok: true });
 }

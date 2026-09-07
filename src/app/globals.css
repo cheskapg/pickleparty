@@ -284,6 +284,22 @@ select {
   transform-origin: 50% 50%;
 }
 
+@keyframes slide-timer {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.slide-timer {
+  transform-origin: left center;
+  animation-name: slide-timer;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
 /* ---------- vector art motion ---------- */
 
 @keyframes bubble-rise {
