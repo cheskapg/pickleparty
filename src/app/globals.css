@@ -1,0 +1,487 @@
+@import "tailwindcss";
+
+:root {
+  --acid: #ccff00;
+  --acid-deep: #a4d400;
+  --pink: #ff2e88;
+  --pink-deep: #d1005f;
+  --cyan: #17e9ff;
+  --blue: #1b52ff;
+  --blue-deep: #0b2ca8;
+  --blue-soft: #9fc0ff;
+  --violet: #6c2bff;
+  --bone: #f2eddf;
+  --ink: #0d0f0a;
+}
+
+@theme inline {
+  --color-acid: var(--acid);
+  --color-acid-deep: var(--acid-deep);
+  --color-pink: var(--pink);
+  --color-pink-deep: var(--pink-deep);
+  --color-cyan: var(--cyan);
+  --color-blue: var(--blue);
+  --color-blue-deep: var(--blue-deep);
+  --color-blue-soft: var(--blue-soft);
+  --color-violet: var(--violet);
+  --color-bone: var(--bone);
+  --color-ink: var(--ink);
+  --font-display: var(--font-bungee);
+  --font-block: var(--font-archivo);
+  --font-sans: var(--font-grotesk);
+  --font-mono: var(--font-space-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bone);
+  color: var(--ink);
+  font-family: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--acid);
+  color: var(--ink);
+}
+
+/* Keep tap targets and body copy legible on small screens. */
+input,
+textarea,
+select {
+  font-size: 16px;
+}
+
+/* ---------- poster surfaces ---------- */
+
+.court-grid {
+  background-image:
+    linear-gradient(rgba(13, 15, 10, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13, 15, 10, 0.16) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.halftone {
+  background-image: radial-gradient(
+    var(--dot, rgba(13, 15, 10, 0.35)) 1.4px,
+    transparent 1.5px
+  );
+  background-size: 7px 7px;
+}
+
+.stripes {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--ink) 0 12px,
+    transparent 12px 24px
+  );
+}
+
+.hard-edge {
+  border: 3px solid var(--ink);
+  box-shadow: 8px 8px 0 var(--ink);
+}
+
+/* ---------- type treatments ---------- */
+
+.smash {
+  font-family: var(--font-archivo), system-ui, sans-serif;
+  letter-spacing: -0.03em;
+  line-height: 0.84;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.warp {
+  transform: scaleY(1.16) scaleX(0.96) skewX(-5deg);
+  transform-origin: left center;
+}
+
+.warp-right {
+  transform: scaleY(1.12) skewX(4deg);
+  transform-origin: right center;
+}
+
+.glitch {
+  text-shadow:
+    3px 0 var(--pink),
+    -3px 0 var(--cyan);
+}
+
+.outline-type {
+  color: transparent;
+  -webkit-text-stroke: 2.5px var(--ink);
+  paint-order: stroke fill;
+}
+
+.outline-type-light {
+  color: transparent;
+  -webkit-text-stroke: 2.5px var(--bone);
+  paint-order: stroke fill;
+}
+
+/* Small labels: mono, spaced, but never below readable size. */
+.kicker {
+  font-family: var(--font-space-mono), ui-monospace, monospace;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* Body copy: readable sans with generous leading. */
+.body-copy {
+  font-size: 1rem;
+  line-height: 1.65;
+  letter-spacing: 0.005em;
+}
+
+@media (min-width: 640px) {
+  .body-copy {
+    font-size: 1.0625rem;
+  }
+}
+
+/* ---------- photo treatment ---------- */
+
+.poster-photo img {
+  filter: grayscale(1) contrast(1.28) brightness(1.08);
+}
+
+.tint-acid {
+  background: linear-gradient(155deg, var(--acid) 5%, var(--blue) 95%);
+  mix-blend-mode: color;
+  opacity: 0.88;
+}
+
+.tint-pink {
+  background: linear-gradient(155deg, var(--pink) 5%, var(--blue) 95%);
+  mix-blend-mode: color;
+  opacity: 0.88;
+}
+
+.tint-cyan {
+  background: linear-gradient(155deg, var(--cyan) 5%, var(--violet) 95%);
+  mix-blend-mode: color;
+  opacity: 0.85;
+}
+
+/* ---------- motion ---------- */
+
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 26s linear infinite;
+}
+
+.marquee-fast {
+  animation-duration: 14s;
+}
+
+@keyframes wobble {
+  0%,
+  100% {
+    transform: rotate(-4deg) translateY(0);
+  }
+  50% {
+    transform: rotate(4deg) translateY(-5px);
+  }
+}
+
+.wobble {
+  animation: wobble 3.4s ease-in-out infinite;
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  48% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+  52% {
+    opacity: 1;
+  }
+}
+
+.flicker {
+  animation: flicker 2.6s steps(1, end) infinite;
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(26px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.pop-in {
+  animation: pop-in 0.6s cubic-bezier(0.2, 0.9, 0.2, 1) both;
+}
+
+@keyframes gate-out {
+  from {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+  to {
+    clip-path: inset(0 0 100% 0);
+    opacity: 0;
+  }
+}
+
+.gate-out {
+  animation: gate-out 0.75s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+
+@keyframes ball-bounce {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-22px) rotate(180deg);
+  }
+}
+
+.ball-bounce {
+  animation: ball-bounce 1.1s ease-in-out infinite;
+}
+
+/* ---------- vector art motion ---------- */
+
+@keyframes bubble-rise {
+  0% {
+    transform: translateY(0) scale(0.7);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-46px) scale(1.1);
+    opacity: 0;
+  }
+}
+
+.vec-bubble {
+  animation: bubble-rise 2.6s ease-in-out infinite;
+}
+
+@keyframes liquid-sway {
+  0%,
+  100% {
+    transform: translateX(-2px) rotate(-1.5deg);
+  }
+  50% {
+    transform: translateX(2px) rotate(1.5deg);
+  }
+}
+
+.vec-liquid {
+  animation: liquid-sway 3s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes glass-tilt {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+.vec-tilt {
+  animation: glass-tilt 4.5s ease-in-out infinite;
+  transform-origin: 50% 90%;
+}
+
+@keyframes steam-rise {
+  0% {
+    transform: translateY(6px) scale(0.85);
+    opacity: 0;
+  }
+  35% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-34px) scale(1.25);
+    opacity: 0;
+  }
+}
+
+.vec-steam {
+  animation: steam-rise 3.2s ease-out infinite;
+}
+
+@keyframes flame-flicker {
+  0%,
+  100% {
+    transform: scaleY(1) scaleX(1);
+    opacity: 1;
+  }
+  33% {
+    transform: scaleY(1.28) scaleX(0.9);
+    opacity: 0.85;
+  }
+  66% {
+    transform: scaleY(0.86) scaleX(1.1);
+    opacity: 1;
+  }
+}
+
+.vec-flame {
+  animation: flame-flicker 0.7s ease-in-out infinite;
+  transform-origin: 50% 100%;
+}
+
+@keyframes spit-turn {
+  0%,
+  100% {
+    transform: rotate(-2.5deg);
+  }
+  50% {
+    transform: rotate(2.5deg);
+  }
+}
+
+.vec-spit {
+  animation: spit-turn 3.6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes paddle-swing-left {
+  0%,
+  100% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+@keyframes paddle-swing-right {
+  0%,
+  100% {
+    transform: rotate(4deg);
+  }
+  50% {
+    transform: rotate(-2deg);
+  }
+}
+
+.vec-paddle-left {
+  animation: paddle-swing-left 2.4s ease-in-out infinite;
+  transform-origin: 50% 85%;
+}
+
+.vec-paddle-right {
+  animation: paddle-swing-right 2.4s ease-in-out infinite;
+  transform-origin: 50% 85%;
+}
+
+@keyframes ball-arc {
+  0%,
+  100% {
+    transform: translate(-30px, 6px);
+  }
+  50% {
+    transform: translate(30px, -26px);
+  }
+}
+
+.vec-ball {
+  animation: ball-arc 2.4s ease-in-out infinite;
+}
+
+@keyframes burst-pulse {
+  0%,
+  100% {
+    transform: scale(0.82);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+}
+
+.vec-burst {
+  animation: burst-pulse 2.4s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes sparkle-blink {
+  0%,
+  100% {
+    transform: scale(0.6) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.15) rotate(45deg);
+    opacity: 1;
+  }
+}
+
+.vec-sparkle {
+  animation: sparkle-blink 1.9s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.vec-delay-1 {
+  animation-delay: 0.35s;
+}
+
+.vec-delay-2 {
+  animation-delay: 0.75s;
+}
+
+.vec-delay-3 {
+  animation-delay: 1.15s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .wobble,
+  .flicker,
+  .ball-bounce,
+  .pop-in,
+  .vec-bubble,
+  .vec-liquid,
+  .vec-tilt,
+  .vec-steam,
+  .vec-flame,
+  .vec-spit,
+  .vec-paddle-left,
+  .vec-paddle-right,
+  .vec-ball,
+  .vec-burst,
+  .vec-sparkle {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
