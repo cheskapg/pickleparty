@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { PHOTO_FILTER } from "@/lib/photoFilter";
 import { PosterPhoto } from "./PosterPhoto";
 
 const looks = [
@@ -104,6 +105,7 @@ export function WhatToWear() {
   const [activeDesign, setActiveDesign] = useState(0);
   const active = looks.find((look) => look.id === activeId) ?? looks[0];
   const design = active.designs[activeDesign] ?? active.designs[0];
+  const photoTint = PHOTO_FILTER ? active.tint : "none";
 
   return (
     <section
@@ -151,7 +153,7 @@ export function WhatToWear() {
                 key={`${active.id}-${activeDesign}`}
                 src={design.image}
                 alt={design.alt}
-                tint={active.tint}
+                tint={photoTint}
                 className="pop-in aspect-[3/4] border-[3px] border-ink"
               />
             </div>
@@ -184,7 +186,7 @@ export function WhatToWear() {
                     <PosterPhoto
                       src={option.image}
                       alt=""
-                      tint={active.tint}
+                      tint={photoTint}
                       className="size-full"
                     />
                   </span>

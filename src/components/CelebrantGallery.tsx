@@ -3,19 +3,45 @@
 import { useState } from "react";
 import { CouplePhoto } from "./CouplePhoto";
 
+/**
+ * Each slide points at a real file in `public/images/`. To use your own photo,
+ * either overwrite the file keeping its name, or rename your photo to match.
+ */
 const slides = [
-  { label: "CELEBRANTS — HERO SHOT", note: "Best landscape or full-body photo" },
-  { label: "ON-COURT MOMENT", note: "A playful pickleball photo" },
-  { label: "THROWBACK FRAME", note: "A favorite memory together" },
-  { label: "PARTY PORTRAIT", note: "A dressed-up photo of the celebrants" },
-  { label: "CANDID ENERGY", note: "Something fun and unposed" },
+  {
+    src: "/images/celebrant-01.jpeg",
+    label: "CELEBRANTS — HERO SHOT",
+    note: "celebrant-01.png",
+  },
+  {
+    src: "/images/celebrant-02.png",
+    label: "ON-COURT MOMENT",
+    note: "celebrant-02.png",
+  },
+  {
+    src: "/images/celebrant-03.png",
+    label: "THROWBACK FRAME",
+    note: "celebrant-03.png",
+  },
+  {
+    src: "/images/celebrant-04.png",
+    label: "PARTY PORTRAIT",
+    note: "celebrant-04.png",
+  },
+  {
+    src: "/images/celebrant-05.png",
+    label: "CANDID ENERGY",
+    note: "celebrant-05.png",
+  },
 ];
 
 export function CelebrantGallery() {
   const [active, setActive] = useState(0);
 
   function move(direction: -1 | 1) {
-    setActive((current) => (current + direction + slides.length) % slides.length);
+    setActive(
+      (current) => (current + direction + slides.length) % slides.length,
+    );
   }
 
   return (
@@ -39,24 +65,24 @@ export function CelebrantGallery() {
             type="button"
             onClick={() => move(-1)}
             aria-label="Previous photo"
-            className="order-2 border-[3px] border-ink bg-bone px-5 py-3 font-display text-xl shadow-[4px_4px_0_var(--blue)] sm:order-1 sm:px-4"
+            className="order-2 border-[3px] border-ink bg-bone px-5 py-3 font-display text-xl shadow-[4px_4px_0_var(--blue)] transition-transform hover:-translate-y-0.5 sm:order-1 sm:px-4"
           >
             ←
           </button>
 
           <div className="order-1 border-[4px] border-ink bg-bone p-3 shadow-[10px_10px_0_var(--pink)] sm:order-2 sm:p-4">
             <CouplePhoto
-              key={active}
+              key={slides[active].src}
+              src={slides[active].src}
               label={slides[active].label}
-              hint={slides[active].note}
-              className="pop-in aspect-[4/3] min-h-[260px]"
+              className="pop-in aspect-[4/3] border-[3px] border-ink"
             />
-            <div className="mt-4 flex items-center justify-between gap-3">
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-2">
               <p className="font-display text-sm text-ink">
-                FRAME {String(active + 1).padStart(2, "0")}
+                {slides[active].label}
               </p>
-              <p className="text-sm font-medium text-ink/70">
-                {active + 1} / {slides.length}
+              <p className="font-mono text-xs text-ink/65">
+                {slides[active].note} · {active + 1}/{slides.length}
               </p>
             </div>
           </div>
@@ -65,7 +91,7 @@ export function CelebrantGallery() {
             type="button"
             onClick={() => move(1)}
             aria-label="Next photo"
-            className="order-3 border-[3px] border-ink bg-acid px-5 py-3 font-display text-xl shadow-[4px_4px_0_var(--blue)] sm:px-4"
+            className="order-3 border-[3px] border-ink bg-acid px-5 py-3 font-display text-xl shadow-[4px_4px_0_var(--blue)] transition-transform hover:-translate-y-0.5 sm:px-4"
           >
             →
           </button>
@@ -74,7 +100,7 @@ export function CelebrantGallery() {
         <div className="mt-7 flex justify-center gap-2">
           {slides.map((slide, index) => (
             <button
-              key={slide.label}
+              key={slide.src}
               type="button"
               onClick={() => setActive(index)}
               aria-label={`Show photo ${index + 1}`}

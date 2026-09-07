@@ -75,8 +75,9 @@ export function Hero() {
           <div className="absolute -inset-3 rotate-3 stripes opacity-25" />
           <div className="relative rotate-[-2deg] border-[4px] border-ink bg-bone p-3 shadow-[10px_10px_0_var(--acid)] sm:shadow-[14px_14px_0_var(--acid)]">
             <CouplePhoto
-              label="COUPLE PHOTO"
-              hint="Add your photo to public/images and pass it as src."
+              src="/images/couple.jpeg"
+              label="Photo of the celebrants"
+              priority
               className="aspect-[3/4] border-[3px] border-ink"
             />
             <div className="mt-3 flex items-center justify-between gap-2">

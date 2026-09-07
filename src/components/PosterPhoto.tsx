@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-type Tint = "acid" | "pink" | "cyan";
+export type Tint = "acid" | "pink" | "cyan" | "none";
 
 export function PosterPhoto({
   src,
@@ -17,8 +17,15 @@ export function PosterPhoto({
   className?: string;
   objectPosition?: string;
 }) {
+  // "none" keeps the photo untouched: no grayscale, no duotone, no dots.
+  const plain = tint === "none";
+
   return (
-    <div className={`poster-photo relative isolate overflow-hidden ${className}`}>
+    <div
+      className={`relative isolate overflow-hidden ${
+        plain ? "" : "poster-photo"
+      } ${className}`}
+    >
       <Image
         src={src}
         alt={alt}
@@ -28,11 +35,15 @@ export function PosterPhoto({
         className="object-cover"
         style={objectPosition ? { objectPosition } : undefined}
       />
-      <div className={`absolute inset-0 z-10 tint-${tint}`} />
-      <div
-        className="absolute inset-0 z-20 halftone opacity-40 mix-blend-multiply"
-        style={{ ["--dot" as string]: "rgba(13,15,10,0.5)" }}
-      />
+      {plain ? null : (
+        <>
+          <div className={`absolute inset-0 z-10 tint-${tint}`} />
+          <div
+            className="absolute inset-0 z-20 halftone opacity-40 mix-blend-multiply"
+            style={{ ["--dot" as string]: "rgba(13,15,10,0.5)" }}
+          />
+        </>
+      )}
     </div>
   );
 }

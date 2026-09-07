@@ -1,19 +1,22 @@
-import { PosterPhoto } from "./PosterPhoto";
+import { PHOTO_FILTER } from "@/lib/photoFilter";
+import { PosterPhoto, type Tint } from "./PosterPhoto";
 
 /**
- * Photo slot for the couple. Drop a file in `public/images/` and pass its
- * path as `src` to swap the placeholder for the real photo.
+ * Photo slot for the celebrants. Overwrite the file in `public/images/`
+ * (keep the same name) and the photo shows up here automatically.
  */
 export function CouplePhoto({
   src,
   label,
   hint,
+  tint = "pink",
   className = "",
   priority = false,
 }: {
   src?: string;
   label: string;
   hint?: string;
+  tint?: Tint;
   className?: string;
   priority?: boolean;
 }) {
@@ -22,7 +25,7 @@ export function CouplePhoto({
       <PosterPhoto
         src={src}
         alt={label}
-        tint="pink"
+        tint={PHOTO_FILTER ? tint : "none"}
         priority={priority}
         className={className}
       />

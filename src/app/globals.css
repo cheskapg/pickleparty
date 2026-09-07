@@ -280,7 +280,8 @@ select {
 }
 
 .music-spin {
-  animation: music-spin 3s linear infinite;
+  animation: music-spin 2.4s linear infinite;
+  transform-origin: 50% 50%;
 }
 
 /* ---------- vector art motion ---------- */
