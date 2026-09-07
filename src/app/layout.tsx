@@ -32,8 +32,9 @@ const spaceMono = Space_Mono({
 });
 
 const siteTitle = "DINK OR DRINK — Chestine’s Pickle Party";
-const siteDescription =
-  "Open the invitation: Chestine’s Pickle Party. Dink. Drink. Repeat. Open play, cold drinks, and questionable decisions.";
+const siteTagline =
+  "A Golden play — come for the dink, stay for the drink.";
+const siteDescription = `${siteTagline} Open the invitation: Chestine’s Pickle Party. Dink. Drink. Repeat.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -66,13 +67,23 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     title: siteTitle,
-    description: siteDescription,
+    description: siteTagline,
     siteName: "DINK OR DRINK",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 1200,
+        alt: "Pickleball paddle — DINK OR DRINK",
+        type: "image/png",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: siteTitle,
-    description: siteDescription,
+    description: siteTagline,
+    images: ["/og.png"],
   },
   robots: {
     index: true,

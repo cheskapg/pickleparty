@@ -29,7 +29,11 @@ export function Hero({ couplePhoto }: { couplePhoto?: string }) {
             DINK · DRINK · REPEAT
           </div>
 
-          <p className="body-copy mt-6 max-w-md text-bone">
+          <p className="mt-5 max-w-lg text-lg font-medium leading-snug text-cyan sm:text-xl">
+            A Golden play — come for the dink, stay for the drink.
+          </p>
+
+          <p className="body-copy mt-4 max-w-md text-bone/85">
             An indoor night match with bright fits, cold drinks, and a playlist
             loud enough for the back court.
           </p>

@@ -52,8 +52,8 @@ export function InvitationGate({ children }: { children: ReactNode }) {
               <p className="font-display text-sm text-ink sm:text-base">
                 CHESTINE’S PICKLE PARTY
               </p>
-              <p className="mt-1.5 font-mono text-sm tracking-[0.16em] text-ink/75">
-                DRINK · EAT · PLAY
+              <p className="mt-1.5 text-sm font-medium leading-snug text-blue-deep">
+                A Golden play — come for the dink, stay for the drink.
               </p>
             </div>
 
