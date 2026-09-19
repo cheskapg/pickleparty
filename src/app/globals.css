@@ -282,6 +282,19 @@ select {
     transform: translateY(-6px);
   }
 }
+@keyframes tap-bounce-x {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(1px);
+  }
+}
+
+.tap-bounce-x {
+  display: inline-block;
+  animation: tap-bounce-x 1s ease-in-out infinite;
+}
 
 .tap-bounce {
   display: inline-block;

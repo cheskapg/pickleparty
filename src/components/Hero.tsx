@@ -15,7 +15,7 @@ export function Hero({ couplePhoto }: { couplePhoto?: string }) {
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-12 sm:px-5 sm:py-16 md:grid-cols-[1.05fr_0.95fr] md:py-20">
         <div>
-          <div className="inline-block -rotate-2 border-[3px] border-ink bg-acid px-3 py-1.5 font-display text-s text-ink shadow-[4px_4px_0_var(--ink)]">
+          <div className="inline-block -rotate-2 border-[3px] text-center border-ink bg-acid px-3 py-1.5 font-display text-s text-ink shadow-[4px_4px_0_var(--ink)]">
             CHESTER & CHRISTINE'S BIRTHDAY CELEBRATION
           </div>
 
@@ -73,13 +73,13 @@ export function Hero({ couplePhoto }: { couplePhoto?: string }) {
               href="#dink-or-drink"
               className="border-[3px] border-ink bg-pink px-6 py-4 text-center font-display text-sm text-bone shadow-[6px_6px_0_var(--ink)] transition-transform hover:-translate-y-1 sm:py-3.5"
             >
-              <span className="tap-bounce" aria-hidden>👆</span> PICK YOUR SIDE
+              <span className="tap-bounce-x" aria-hidden>👉</span> PICK YOUR SIDE
             </a>
             <a
               href="#play"
               className="border-[3px] border-ink bg-bone px-6 py-4 text-center font-display text-sm text-ink shadow-[6px_6px_0_var(--acid)] transition-transform hover:-translate-y-1 sm:py-3.5"
             >
-              <span className="tap-bounce" aria-hidden>👆</span> SEE THE LINEUP
+              <span className="tap-bounce-x" aria-hidden>👉</span> SEE THE LINEUP
             </a>
           </div>
         </div>

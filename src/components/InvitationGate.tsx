@@ -53,9 +53,12 @@ export function InvitationGate({ children }: { children: ReactNode }) {
 
             <div className="mt-8 inline-block -rotate-1 border-[3px] border-ink bg-bone px-5 py-4 shadow-[6px_6px_0_var(--ink)]">
               <p className="font-display text-xs text-blue-deep sm:text-sm">
-                It's CHESTER & CHRISTINE's Birthday Party!
+                It's CHESTER & CHRISTINE's
               </p>
-              <p className="mt-1 font-display text-xl text-ink sm:text-2xl">
+              <p className="font-display text-xs text-blue-deep sm:text-sm">
+              Birthday Celebration!
+              </p>
+              <p className="mt-3 font-display text-xl text-ink sm:text-2xl">
               CHESTINE’S PICKLE PARTY
               </p>
               <div className="mx-auto mt-2 h-[2px] w-12 bg-ink/30" />
