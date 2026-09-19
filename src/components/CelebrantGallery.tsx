@@ -62,9 +62,9 @@ export function CelebrantGallery({ slides }: { slides: GallerySlide[] }) {
               <span className="block warp">THE CELEBRANTS</span>
             </h2>
           </div>
-          <p className="hidden max-w-xs text-right text-base font-medium leading-relaxed text-ink/75 sm:block">
+          {/* <p className="hidden max-w-xs text-right text-base font-medium leading-relaxed text-ink/75 sm:block">
             Replace these frames with favorite photos from every era.
-          </p>
+          </p> */}
         </div>
 
         <div className="mt-10 grid items-center justify-center gap-5 sm:grid-cols-[auto_minmax(0,620px)_auto]">

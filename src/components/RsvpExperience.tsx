@@ -27,8 +27,8 @@ export function RsvpExperience() {
   const [error, setError] = useState("");
 
   const choiceCopy = useMemo(() => {
-    if (choice === "dink") return "You’re here to play. Court time locked.";
-    if (choice === "drink") return "You’re here to party. Seat saved.";
+    if (choice === "dink") return "You\u2019re here to play. Court time locked.";
+    if (choice === "drink") return "You\u2019re here to party. Seat saved.";
     if (choice === "both") return "Obviously, the correct answer.";
     return "";
   }, [choice]);
@@ -92,6 +92,9 @@ export function RsvpExperience() {
               OR DRINK?
             </span>
           </h2>
+          <p className="mt-4 font-mono text-sm font-bold tracking-[0.12em] text-acid/80">
+            <span className="tap-bounce text-lg" aria-hidden>👇</span> CLICK A CARD BELOW TO CHOOSE
+          </p>
 
           <div className="mt-10 grid gap-5 sm:mt-12 sm:gap-6 md:grid-cols-2">
             <button
@@ -108,10 +111,13 @@ export function RsvpExperience() {
                 🥒 DINK
               </p>
               <p className="mt-3 font-display text-base text-blue-deep sm:text-lg">
-                I’M HERE TO PLAY
+                I{"\u2019"}M HERE TO PLAY
               </p>
               <p className="body-copy mt-3 text-ink/85">
                 Open play • Friendly matches • Pickleball • Competition
+              </p>
+              <p className="mt-3 font-mono text-xs text-blue/70">
+                <span className="tap-bounce" aria-hidden>👆</span> Click to select
               </p>
             </button>
 
@@ -137,7 +143,7 @@ export function RsvpExperience() {
                   choice === "drink" ? "text-ink" : "text-pink-deep"
                 }`}
               >
-                I’M HERE TO PARTY
+                I{"\u2019"}M HERE TO PARTY
               </p>
               <p
                 className={`body-copy mt-3 ${
@@ -145,6 +151,9 @@ export function RsvpExperience() {
                 }`}
               >
                 Drinks • Food • Socializing • Good vibes
+              </p>
+              <p className={`mt-3 font-mono text-xs ${choice === "drink" ? "text-bone/60" : "text-blue/70"}`}>
+                <span className="tap-bounce" aria-hidden>👆</span> Click to select
               </p>
             </button>
           </div>
@@ -173,6 +182,9 @@ export function RsvpExperience() {
             >
               Obviously, the correct answer.
             </p>
+            <p className={`mt-2 font-mono text-xs ${choice === "both" ? "text-ink/50" : "text-acid/60"}`}>
+              <span className="tap-bounce" aria-hidden>👆</span> Click to select
+            </p>
           </button>
         </div>
       </section>
@@ -191,13 +203,13 @@ export function RsvpExperience() {
           <p className="body-copy mt-4 text-ink/80">
             {choice
               ? choiceCopy
-              : "Pick Dink, Drink, or both above — then lock it in."}
+              : "Pick Dink, Drink, or both above \u2014 then lock it in."}
           </p>
 
           {status === "done" ? (
             <div className="pop-in mt-10 border-[4px] border-ink bg-acid p-6 text-center shadow-[10px_10px_0_var(--blue)] sm:p-8 sm:shadow-[12px_12px_0_var(--blue)]">
               <p className="font-display text-3xl text-ink sm:text-4xl">
-                YOU’RE IN! 🥒🍸
+                YOU{"\u2019"}RE IN! 🥒🍸
               </p>
               <p className="body-copy mt-4 text-ink/85">
                 Your spot is saved.
@@ -217,6 +229,7 @@ export function RsvpExperience() {
                     required
                     value={name}
                     onChange={(event) => setName(event.target.value)}
+                    placeholder="Type your name here"
                     className="mt-2 w-full border-[3px] border-ink bg-white px-3 py-3 outline-none focus:bg-acid/30"
                   />
                 </label>
@@ -227,6 +240,7 @@ export function RsvpExperience() {
                     required
                     value={contact}
                     onChange={(event) => setContact(event.target.value)}
+                    placeholder="Type your email or phone here"
                     className="mt-2 w-full border-[3px] border-ink bg-white px-3 py-3 outline-none focus:bg-acid/30"
                   />
                 </label>
@@ -235,7 +249,10 @@ export function RsvpExperience() {
                   <legend className="kicker text-ink">
                     ARE YOU JOINING US?
                   </legend>
-                  <div className="mt-3 flex flex-wrap gap-2.5">
+                  <p className="mt-1 font-mono text-xs text-ink/50">
+                    <span className="tap-bounce" aria-hidden>👇</span> Click one to select
+                  </p>
+                  <div className="mt-2 flex flex-wrap gap-2.5">
                     <Choice
                       checked={attending === "yes"}
                       onChange={() => setAttending("yes")}
@@ -251,9 +268,12 @@ export function RsvpExperience() {
 
                 <fieldset>
                   <legend className="kicker text-ink">
-                    WHAT’S YOUR GAME PLAN?
+                    WHAT{"\u2019"}S YOUR GAME PLAN?
                   </legend>
-                  <div className="mt-3 flex flex-wrap gap-2.5">
+                  <p className="mt-1 font-mono text-xs text-ink/50">
+                    <span className="tap-bounce" aria-hidden>👇</span> Click one to select
+                  </p>
+                  <div className="mt-2 flex flex-wrap gap-2.5">
                     <Choice
                       checked={gamePlan === "dink"}
                       onChange={() => setGamePlan("dink")}
@@ -274,9 +294,12 @@ export function RsvpExperience() {
 
                 <fieldset>
                   <legend className="kicker text-ink">
-                    IF YOU’RE PLAYING, WHAT’S YOUR LEVEL?
+                    IF YOU{"\u2019"}RE PLAYING, WHAT{"\u2019"}S YOUR LEVEL?
                   </legend>
-                  <div className="mt-3 flex flex-wrap gap-2.5">
+                  <p className="mt-1 font-mono text-xs text-ink/50">
+                    <span className="tap-bounce" aria-hidden>👇</span> Click one to select
+                  </p>
+                  <div className="mt-2 flex flex-wrap gap-2.5">
                     {skillOptions.map((option) => (
                       <Choice
                         key={option.value}
@@ -290,7 +313,10 @@ export function RsvpExperience() {
 
                 <fieldset>
                   <legend className="kicker text-ink">BRINGING A GUEST?</legend>
-                  <div className="mt-3 flex flex-wrap gap-2.5">
+                  <p className="mt-1 font-mono text-xs text-ink/50">
+                    <span className="tap-bounce" aria-hidden>👇</span> Click one to select
+                  </p>
+                  <div className="mt-2 flex flex-wrap gap-2.5">
                     <Choice
                       checked={!bringingGuest}
                       onChange={() => {
@@ -308,7 +334,7 @@ export function RsvpExperience() {
                   {bringingGuest ? (
                     <input
                       required
-                      placeholder="Guest Name"
+                      placeholder="Type guest name here"
                       value={guestName}
                       onChange={(event) => setGuestName(event.target.value)}
                       className="mt-4 w-full border-[3px] border-ink bg-white px-3 py-3 outline-none focus:bg-acid/30"
@@ -324,6 +350,7 @@ export function RsvpExperience() {
                     value={notes}
                     onChange={(event) => setNotes(event.target.value)}
                     rows={3}
+                    placeholder="Type here (optional)"
                     className="mt-2 w-full resize-none border-[3px] border-ink bg-white px-3 py-3 outline-none focus:bg-acid/30"
                   />
                 </label>
@@ -339,7 +366,7 @@ export function RsvpExperience() {
                   disabled={status === "saving"}
                   className="w-full border-[3px] border-ink bg-blue py-4 font-display text-lg text-acid shadow-[6px_6px_0_var(--ink)] transition-transform hover:-translate-y-1 disabled:opacity-60 disabled:hover:translate-y-0"
                 >
-                  {status === "saving" ? "SAVING…" : "COUNT ME IN"}
+                  {status === "saving" ? "SAVING\u2026" : <><span className="tap-bounce" aria-hidden>✋</span> COUNT ME IN</>}
                 </button>
               </div>
             </form>
@@ -361,10 +388,10 @@ function Choice({
 }) {
   return (
     <label
-      className={`cursor-pointer border-[3px] border-ink px-3.5 py-2.5 text-base transition-transform ${
+      className={`border-[3px] border-ink px-3.5 py-2.5 text-base transition-transform ${
         checked
           ? "-translate-y-0.5 bg-acid font-bold text-ink shadow-[3px_3px_0_var(--ink)]"
-          : "bg-white text-ink/75 hover:bg-acid/20"
+          : "bg-white text-ink/75 shadow-[4px_4px_0_var(--ink)] hover:-translate-y-0.5 hover:bg-acid/20"
       }`}
     >
       <input
@@ -373,7 +400,17 @@ function Choice({
         onChange={onChange}
         className="sr-only"
       />
-      {label}
+      <span className="flex items-center gap-1.5">
+        <span
+          className={`inline-flex size-4 shrink-0 items-center justify-center border-2 border-ink text-[10px] ${
+            checked ? "bg-blue text-acid" : "bg-transparent text-transparent"
+          }`}
+          aria-hidden
+        >
+          ✓
+        </span>
+        {label}
+      </span>
     </label>
   );
 }

@@ -124,7 +124,10 @@ export function WhatToWear() {
           <span className="block text-pink">PARTY APPROVED</span>
         </h2>
 
-        <div className="mt-8 flex flex-wrap gap-2.5 sm:gap-3">
+        <p className="mt-6 font-mono text-xs text-acid/70">
+          <span className="tap-bounce" aria-hidden>👇</span> CLICK A STYLE TO EXPLORE
+        </p>
+        <div className="mt-3 flex flex-wrap gap-2.5 sm:gap-3">
           {looks.map((look) => (
             <button
               key={look.id}
@@ -169,7 +172,10 @@ export function WhatToWear() {
             <p className="kicker mt-2 text-bone/70">
               {active.heading.toUpperCase()} · {design.name.toUpperCase()}
             </p>
-            <div className="mt-5 grid grid-cols-3 gap-2.5">
+            <p className="mt-4 font-mono text-xs text-bone/50">
+              <span className="tap-bounce" aria-hidden>👇</span> Click a design below
+            </p>
+            <div className="mt-2 grid grid-cols-3 gap-2.5">
               {active.designs.map((option, index) => (
                 <button
                   key={option.name}

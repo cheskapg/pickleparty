@@ -36,7 +36,7 @@ export function Reminders() {
         <span className="block warp">BEFORE YOU DINK</span>
       </h2>
       <p className="mt-4 font-mono text-sm font-bold tracking-[0.14em] text-ink">
-        TAP TO PACK — {packed.length}/{reminders.length} DONE
+        <span className="tap-bounce" aria-hidden>👇</span> CLICK TO PACK — {packed.length}/{reminders.length} DONE
       </p>
 
       <ul className="mt-6 space-y-2.5">

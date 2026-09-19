@@ -15,17 +15,26 @@ export function Hero({ couplePhoto }: { couplePhoto?: string }) {
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-12 sm:px-5 sm:py-16 md:grid-cols-[1.05fr_0.95fr] md:py-20">
         <div>
-          <div className="inline-block -rotate-2 border-[3px] border-ink bg-acid px-3 py-1.5 font-display text-xs text-ink shadow-[4px_4px_0_var(--ink)]">
-            OPEN PLAY · INVITATION 001
+          <div className="inline-block -rotate-2 border-[3px] border-ink bg-acid px-3 py-1.5 font-display text-s text-ink shadow-[4px_4px_0_var(--ink)]">
+            CHESTER & CHRISTINE'S BIRTHDAY CELEBRATION
           </div>
 
           <h1 className="smash mt-6 text-[13.5vw] text-bone md:text-[6.5rem]">
-            <span className="block warp glitch">CHESTINE’S</span>
+            <span className="block warp glitch">CHESTINE'S</span>
             <span className="block text-acid">PICKLE</span>
             <span className="block warp-right outline-type-light">PARTY</span>
           </h1>
 
-          <div className="mt-7 inline-block rotate-1 bg-acid px-4 py-2 font-display text-lg text-ink shadow-[6px_6px_0_var(--ink)] sm:text-2xl">
+          <div className="mt-5 inline-block rotate-1 border-[3px] border-ink bg-bone px-4 py-2 shadow-[5px_5px_0_var(--ink)]">
+            <p className="font-display text-xs text-blue-deep sm:text-sm">
+              CHESTER + CHRISTINE
+            </p>
+            <p className="font-display text-base text-center text-ink sm:text-lg">
+            CHESTINE ❤️
+            </p>
+          </div>
+
+          <div className="mt-5 inline-block rotate-1 bg-acid px-4 py-2 font-display text-lg text-ink shadow-[6px_6px_0_var(--ink)] sm:text-2xl">
             DINK · DRINK · REPEAT
           </div>
 
@@ -34,7 +43,7 @@ export function Hero({ couplePhoto }: { couplePhoto?: string }) {
           </p>
 
           <p className="body-copy mt-4 max-w-md text-bone/85">
-            An indoor night match with bright fits, cold drinks, and a playlist
+            An indoor match with bright fits, cold drinks, and a playlist
             loud enough for the back court.
           </p>
 
@@ -64,13 +73,13 @@ export function Hero({ couplePhoto }: { couplePhoto?: string }) {
               href="#dink-or-drink"
               className="border-[3px] border-ink bg-pink px-6 py-4 text-center font-display text-sm text-bone shadow-[6px_6px_0_var(--ink)] transition-transform hover:-translate-y-1 sm:py-3.5"
             >
-              PICK YOUR SIDE
+              <span className="tap-bounce" aria-hidden>👆</span> PICK YOUR SIDE
             </a>
             <a
               href="#play"
               className="border-[3px] border-ink bg-bone px-6 py-4 text-center font-display text-sm text-ink shadow-[6px_6px_0_var(--acid)] transition-transform hover:-translate-y-1 sm:py-3.5"
             >
-              SEE THE LINEUP
+              <span className="tap-bounce" aria-hidden>👆</span> SEE THE LINEUP
             </a>
           </div>
         </div>
@@ -87,17 +96,17 @@ export function Hero({ couplePhoto }: { couplePhoto?: string }) {
             />
             <div className="mt-3 flex items-center justify-between gap-2">
               <p className="font-display text-xs text-ink sm:text-sm">
-                THE HOSTS
+                CHESTER & CHRISTINE
               </p>
               <p className="font-mono text-xs tracking-[0.16em] text-ink/70">
-                MVP · UNDEFEATED
+                THE BIRTHDAY DUO
               </p>
             </div>
           </div>
 
           <Emblem50 className="absolute -left-3 -top-4 wobble size-14 bg-cyan sm:-left-4 sm:-top-5 sm:size-16" />
           <div className="absolute -bottom-4 -right-3 rotate-6 border-[3px] border-ink bg-acid px-3 py-1.5 font-display text-xs text-ink shadow-[4px_4px_0_var(--ink)]">
-            SERVE’S UP
+            SERVE'S UP
           </div>
         </div>
       </div>
@@ -105,10 +114,11 @@ export function Hero({ couplePhoto }: { couplePhoto?: string }) {
       <Marquee
         className="bg-acid text-ink"
         items={[
+          "CHESTINE'S PICKLE PARTY",
+          "CHESTER & CHRISTINE",
           "DINK OR DRINK",
           "OPEN PLAY",
           "COLD DRINKS",
-          "GOOD VIBES",
           "PADDLES UP",
         ]}
       />

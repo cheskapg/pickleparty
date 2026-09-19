@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode, useEffect, useState } from "react";
+import { Confetti } from "./Confetti";
 
 export function InvitationGate({ children }: { children: ReactNode }) {
   const [phase, setPhase] = useState<"closed" | "opening" | "open">("closed");
@@ -25,9 +26,11 @@ export function InvitationGate({ children }: { children: ReactNode }) {
 
   return (
     <>
+      <Confetti fire={phase === "opening" || phase === "open"} />
+
       {phase !== "open" ? (
         <div
-          className={`fixed inset-0 z-[100] overflow-hidden bg-acid ${
+          className={`retro-pointer fixed inset-0 z-[100] overflow-hidden bg-acid ${
             phase === "opening" ? "gate-out" : ""
           }`}
         >
@@ -40,7 +43,7 @@ export function InvitationGate({ children }: { children: ReactNode }) {
           <div className="absolute -right-24 bottom-[22%] h-16 w-[130%] rotate-[6deg] border-y-[3px] border-ink bg-blue sm:h-24" />
 
           <div className="relative flex h-full flex-col items-center justify-center px-5 text-center">
-            <p className="kicker text-ink">YOU’RE ON THE LIST</p>
+            <p className="kicker text-ink">YOU'RE INVITED</p>
 
             <h1 className="smash mt-5 text-[17vw] leading-[0.8] text-ink sm:text-[11vw] lg:text-[8.5rem]">
               <span className="block warp glitch">DINK</span>
@@ -48,11 +51,15 @@ export function InvitationGate({ children }: { children: ReactNode }) {
               <span className="block warp-right glitch">DRINK</span>
             </h1>
 
-            <div className="mt-8 inline-block -rotate-1 border-[3px] border-ink bg-bone px-5 py-3 shadow-[6px_6px_0_var(--ink)]">
-              <p className="font-display text-sm text-ink sm:text-base">
-                CHESTINE’S PICKLE PARTY
+            <div className="mt-8 inline-block -rotate-1 border-[3px] border-ink bg-bone px-5 py-4 shadow-[6px_6px_0_var(--ink)]">
+              <p className="font-display text-xs text-blue-deep sm:text-sm">
+                It's CHESTER & CHRISTINE's Birthday Party!
               </p>
-              <p className="mt-1.5 text-sm font-medium leading-snug text-blue-deep">
+              <p className="mt-1 font-display text-xl text-ink sm:text-2xl">
+              CHESTINE’S PICKLE PARTY
+              </p>
+              <div className="mx-auto mt-2 h-[2px] w-12 bg-ink/30" />
+              <p className="mt-2 text-sm font-medium leading-snug text-blue-deep">
                 A Golden play — come for the dink, stay for the drink.
               </p>
             </div>
@@ -77,15 +84,19 @@ export function InvitationGate({ children }: { children: ReactNode }) {
               </span>
             </button>
 
-            <p className="mt-6 flicker font-mono text-sm tracking-[0.22em] text-ink/75">
-              TAP TO REVEAL
+            <p className="mt-4 font-mono text-sm font-bold tracking-[0.12em] text-ink/80">
+              <span className="tap-bounce text-lg" aria-hidden>👆</span> TAP HERE TO OPEN
+            </p>
+
+            <p className="mt-3 flicker font-mono text-xs tracking-[0.22em] text-ink/55">
+              CHESTER & CHRISTINE'S PICKLE PARTY
             </p>
           </div>
         </div>
       ) : null}
 
       <div
-        className={phase === "open" ? "pop-in" : "pointer-events-none"}
+        className={phase === "open" ? "retro-pointer pop-in" : "pointer-events-none"}
         aria-hidden={phase !== "open"}
       >
         {children}

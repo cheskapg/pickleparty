@@ -15,7 +15,7 @@ import { findPhoto } from "@/lib/photos";
 
 // Drop files in public/images using these base names, any image extension.
 const galleryFrames = [
-  { base: "celebrant-01", label: "CELEBRANTS — HERO SHOT" },
+  { base: "celebrant-01", label: "CELEBRANTS \u2014 HERO SHOT" },
   { base: "celebrant-02", label: "ON-COURT MOMENT" },
   { base: "celebrant-03", label: "THROWBACK FRAME" },
   { base: "celebrant-04", label: "PARTY PORTRAIT" },
@@ -47,16 +47,19 @@ export default function Home() {
               className="border-y-0 bg-acid text-ink"
               items={[
                 "DINK OR DRINK",
-                "CHESTINE’S PICKLE PARTY",
-                "DRINK · EAT · PLAY",
+                "CHESTER + CHRISTINE = CHESTINE",
+                "DRINK \u00b7 EAT \u00b7 PLAY",
               ]}
             />
             <div className="px-4 py-12 text-center sm:px-5">
               <p className="smash text-4xl text-bone sm:text-5xl">
                 <span className="block warp-right">DINK OR DRINK</span>
               </p>
+              <p className="mt-2 font-display text-sm text-acid/80">
+                CHESTER + CHRISTINE = CHESTINE
+              </p>
               <p className="mt-3 font-mono text-sm tracking-[0.2em] text-bone/70">
-                CHESTINE’S PICKLE PARTY · EST. 50
+                CHESTER & CHRISTINE{"\u2019"}S PICKLE PARTY
               </p>
             </div>
           </footer>
